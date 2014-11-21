@@ -1,0 +1,29 @@
+Jugador subclass: #JugadorHumano
+
+perdioEligiendo: miEleccion contra: otroJugador eligiendo: eleccionContraria 
+    "Informa al jugador humano que ha ganado la partida"
+    UITheme current
+        messageIn: Morph new
+        text: ('Perdiste contra ', (eleccionContraria className))
+        title: 'Resultado'.
+
+ganoEligiendo: miEleccion contra: otroJugador eligiendo: eleccionContraria 
+    "Informa al jugador humano que ha ganado la partida"
+    UITheme current
+        messageIn: Morph new
+        text: ('Le ganaste a ', (eleccionContraria className))
+        title: 'Resultado'.
+
+eleccion
+    ^ UITheme current
+        chooseDropListIn: Morph new
+        text: 'Qué jugamos?'
+        title: 'Nueva elección'
+        list: Eleccion todas.
+
+empatoEligiendo: miEleccion contra: otroJugador eligiendo: eleccionContraria 
+    "Informa al jugador humano que ha ganado la partida"
+    UITheme current
+        messageIn: Morph new
+        text: ('Empataste contra ', (eleccionContraria className))
+        title: 'Resultado'.

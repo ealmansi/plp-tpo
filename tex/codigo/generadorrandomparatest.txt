@@ -1,0 +1,8 @@
+Object subclass: #GeneradorRandomParaTest
+    instanceVariableNames: 'siguiente'
+
+siguiente: unNumeroAleatorio
+    siguiente := unNumeroAleatorio.
+
+nextInt: anInteger 
+    ^ siguiente.

@@ -1,0 +1,10 @@
+Jugador subclass: #JugadorSiempre
+    instanceVariableNames: 'eleccion'
+
+juegaCon: unaEleccion
+    "setea la elección fija del jugador siempre"
+    eleccion := unaEleccion.
+
+eleccion
+    "getter de la eleccion"
+    ^ eleccion.

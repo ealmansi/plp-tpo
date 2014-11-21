@@ -1,0 +1,67 @@
+TestCase subclass: #TP3Tests
+
+test01LaIgualdadYElHashDeEleccionNoDistingueInstanciasDelMismoTipo
+    self assert: Eleccion piedra = Eleccion piedra.
+    self assert: Eleccion papel = Eleccion papel.
+    self assert: Eleccion tijera = Eleccion tijera.
+    self assert: Eleccion piedra hash = Eleccion piedra hash.
+    self assert: Eleccion papel hash= Eleccion papel hash.
+    self assert: Eleccion tijera hash= Eleccion tijera hash.
+
+
+test02SeCumplenLasReglasDelJuego
+    "Implementar los distintos ganaContraX para lograr la funcionalidad pedida"
+    self assert: (Eleccion piedra ganaContra: Eleccion tijera).
+    self assert: (Eleccion piedra pierdeContra: Eleccion papel).
+    self assert: (Eleccion piedra empataContra: Eleccion piedra).
+    self assert: (Eleccion papel ganaContra: Eleccion piedra).
+    self assert: (Eleccion papel pierdeContra: Eleccion tijera).
+    self assert: (Eleccion papel empataContra: Eleccion papel).
+    self assert: (Eleccion tijera ganaContra: Eleccion papel).
+    self assert: (Eleccion tijera pierdeContra: Eleccion piedra).
+    self assert: (Eleccion tijera empataContra: Eleccion tijera).
+
+test03SePuedeObtenerUnaOpcionSuperadoraParaCualquierEleccion
+    Eleccion todas allSatisfy: [ :eleccion |
+        eleccion eleccionSuperadora ganaContra: eleccion.
+    ]
+
+test04UnJuegoConsisteEnHacerCompetirLaEleccionDeDosJugadores
+    | jugadorPiedra jugadorPapel |
+    "https://www.youtube.com/watch?feature=player_detailpage&v=dwj254ofJbk#t=14"
+    jugadorPiedra := Jugador siempre: Eleccion piedra.
+    jugadorPapel := Jugador siempre: Eleccion papel.
+    self assert: (Juego entre: jugadorPiedra y: jugadorPapel) resultado ganador = jugadorPapel.
+    self assert: (Juego entre: jugadorPiedra y: jugadorPiedra) resultado esEmpate.
+
+test05UnJugadorAdaptativoCambiaSuEleccionCuandoPierde
+    | jugador contrincante |
+    jugador := Jugador adaptativoIniciandoCon: Eleccion piedra.
+    contrincante := Jugador siempre: Eleccion papel.
+    self assert: jugador eleccion = Eleccion piedra.
+    (Juego entre: jugador y: contrincante) iniciar.
+    self assert: (jugador eleccion ganaContra: contrincante eleccion).
+
+test06UnJugadorAdaptativoCambiaSuEleccionCuandoEmpata
+    | jugador contrincante |
+    jugador := Jugador adaptativoIniciandoCon: Eleccion piedra.
+    contrincante := Jugador siempre: Eleccion piedra.
+    self assert: jugador eleccion = Eleccion piedra.
+    (Juego entre: jugador y: contrincante) iniciar.
+    self assert: (jugador eleccion ganaContra: contrincante eleccion).
+
+test07ElJuegoSeAdaptaANuevasReglas
+    "https://www.youtube.com/watch?v=_PUEoDYpUyQ"
+    self assert: (Eleccion piedra pierdeContra: Eleccion spock).
+    self assert: (Eleccion papel ganaContra: Eleccion spock).
+    self assert: (Eleccion lagarto empataContra: Eleccion lagarto).
+    self assert: (Eleccion spock pierdeContra: Eleccion lagarto).
+
+test08UnJugadorAleatorioUtilizaElGeneradorParaDecidirSuEleccion
+    | jugador generador |
+    generador := GeneradorRandomParaTest new.
+    jugador := Jugador aleatorioConGenerador: generador.
+    generador siguiente: (Eleccion todas indexOf: Eleccion piedra).
+    self assert: jugador eleccion = Eleccion piedra.
+    generador siguiente: (Eleccion todas indexOf: Eleccion spock).
+    self assert: jugador eleccion = Eleccion spock.

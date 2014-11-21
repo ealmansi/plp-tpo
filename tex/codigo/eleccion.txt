@@ -1,0 +1,65 @@
+Object subclass: #Eleccion
+
+ganadorContraLagarto
+    ^ self subclassResponsibility.
+
+ganadorContraTijera
+    ^ self subclassResponsibility.
+
+ganadorContraPapel
+    ^ self subclassResponsibility.
+
+ganadorContraPiedra
+    ^ self subclassResponsibility.
+
+ganadorContraSpock
+    ^ self subclassResponsibility.
+
+ganadorContra: otraEleccion
+    ^ self subclassResponsibility.
+
+pierdeContra: otraEleccion
+    ^ (self noEmpataContra: otraEleccion)
+        and:
+        [ (self ganaContra: otraEleccion) not ]
+
+empataContra: otraEleccion
+    ^ (self ganadorContra: otraEleccion) isNil.
+
+ganaContra: otraEleccion
+    ^ (self noEmpataContra: otraEleccion)
+        and:
+        [ (self ganadorContra: otraEleccion) = self ]
+
+noEmpataContra: otraEleccion
+    ^ (self empataContra: otraEleccion) not.
+
+asString
+    ^ self class name.
+
+eleccionSuperadora
+    "devuelve una elección cualquiera que le gane a self, o nil si no existe ninguna"
+    | eleccion |
+    eleccion := nil.
+    Eleccion todas do: [ :item |  (item ganaContra: self) ifTrue: [ eleccion := item ] ].
+    ^ eleccion
+
+Eleccion class
+
+papel
+    ^ Papel singleton.
+
+piedra
+    ^ Piedra singleton.
+
+todas
+    ^ self allSubclasses collect: [ :item | item singleton ].
+
+lagarto
+    ^ Lagarto singleton.
+
+spock
+    ^ Spock singleton.
+
+tijera
+    ^ Tijera singleton.

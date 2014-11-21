@@ -1,0 +1,13 @@
+Jugador subclass: #JugadorAleatorio
+    instanceVariableNames: 'generador'
+
+generador: unGenerador
+    "setter del generador del jugador aleatorio"
+    generador := unGenerador.
+
+eleccion
+    | todas |
+    todas := Eleccion todas.
+    ^ todas at: (generador nextInt: (todas size)).
+
+JugadorAleatorio class

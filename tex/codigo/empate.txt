@@ -1,0 +1,28 @@
+Resultado subclass: #Empate
+    instanceVariableNames: 'jugador1 eleccion1 jugador2 eleccion2'
+
+notificarAJugadores
+    jugador1 empatoEligiendo: eleccion1 contra: jugador2 eligiendo: eleccion2.
+    jugador2 empatoEligiendo: eleccion2 contra: jugador1 eligiendo: eleccion1.
+
+ganador
+    ^ nil.
+
+jugador1: unJugador eleccion1: unaEleccion jugador2: otroJugador eleccion2: otraEleccion 
+    jugador1 := unJugador.
+    eleccion1 := unaEleccion.
+    jugador2 := otroJugador.
+    eleccion2 := otraEleccion.
+
+esEmpate
+    ^ true.
+
+Empate class
+
+entre: unJugador eligiendo: unaEleccion y: otroJugador eligiendo: otraEleccion 
+    ^ self new
+        jugador1: unJugador
+        eleccion1: unaEleccion
+        jugador2: otroJugador
+        eleccion2: otraEleccion;
+        yourself.

@@ -1,0 +1,34 @@
+Object subclass: #Juego
+    instanceVariableNames: 'jugador1 jugador2 resultado eleccion1 eleccion2'
+
+resultado
+    resultado isNil ifTrue: [ self iniciar ].
+    ^ resultado.
+
+revancha
+    ^ self iniciar.
+
+iniciar
+    eleccion1 := jugador1 eleccion.
+    eleccion2 := jugador2 eleccion.
+    resultado := Resultado jugador1: jugador1 conEleccion: eleccion1
+                            jugador2: jugador2 conEleccion: eleccion2.
+    resultado notificarAJugadores.
+
+jugador1: unJugador jugador2: otroJugador 
+    jugador1 := unJugador.
+    jugador2 := otroJugador.
+
+Juego class
+
+mejorDe: cantidadDeJuegos contra: unJugador
+    Juego mejorDe: cantidadDeJuegos entre: Jugador humano y: unJugador.
+
+mejorDe: cantidadDeJuegos entre: unJugador y: otroJugador
+    | j |
+    j := Juego entre: unJugador y: otroJugador.
+    cantidadDeJuegos timesRepeat: [ j iniciar ].
+
+entre: unJugador y: otroJugador 
+    ^ self new jugador1: unJugador jugador2: otroJugador;
+            yourself.

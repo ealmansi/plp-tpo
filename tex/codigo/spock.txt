@@ -1,0 +1,27 @@
+Eleccion subclass: #Spock
+    classVariableNames: 'UniqueInstance'
+
+ganadorContraLagarto
+    ^ Eleccion lagarto.
+
+ganadorContraTijera
+    ^ self.
+
+ganadorContraPapel
+    ^ Eleccion papel.
+
+ganadorContraPiedra
+    ^ self.
+
+ganadorContraSpock
+    ^ nil.
+
+ganadorContra: otraEleccion
+    ^ otraEleccion ganadorContraSpock.
+
+Spock class
+
+singleton
+    "devuelve la unica instancia de la clase"
+    UniqueInstance ifNil: [ UniqueInstance := self new ].
+    ^UniqueInstance

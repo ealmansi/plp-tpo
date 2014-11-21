@@ -1,0 +1,16 @@
+Object subclass: #Resultado
+
+Resultado class
+
+jugador1: unJugador conEleccion: unaEleccion jugador2: otroJugador conEleccion: otraEleccion 
+    (unaEleccion empataContra: otraEleccion)
+    ifTrue: [
+        ^ Empate entre: unJugador eligiendo: unaEleccion y: otroJugador eligiendo: otraEleccion.
+    ].
+    ^ (unaEleccion ganaContra: otraEleccion)
+        ifTrue: [ Victoria de: unJugador eligiendo: unaEleccion contra: otroJugador 
+            eligiendo: otraEleccion
+        ]
+        ifFalse: [ Victoria de: otroJugador eligiendo: otraEleccion contra: unJugador 
+            eligiendo: unaEleccion
+        ].

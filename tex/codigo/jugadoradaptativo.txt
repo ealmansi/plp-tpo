@@ -1,0 +1,18 @@
+Jugador subclass: #JugadorAdaptativo
+    instanceVariableNames: 'eleccion'
+
+perdioEligiendo: miEleccion contra: otroJugador eligiendo: eleccionContraria 
+    "actualiza la elección del jugador adaptativo a la elección superadora de aquella que le ganó"
+    eleccion := eleccionContraria eleccionSuperadora.
+
+eleccion
+    "getter de la eleccion"
+    ^ eleccion.
+
+iniciaCon: unaEleccion
+    "setea la elección inicial del jugador adapatativo"
+    eleccion := unaEleccion.
+
+empatoEligiendo: miEleccion contra: otroJugador eligiendo: eleccionContraria 
+    "actualiza la elección del jugador adaptativo a la elección superadora de aquella que le empató"
+    eleccion := eleccionContraria eleccionSuperadora.

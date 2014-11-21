@@ -1,0 +1,41 @@
+Object subclass: #Jugador
+
+perdioEligiendo: miEleccion contra: otroJugador eligiendo: eleccionContraria 
+    "Implementar si hace falta actuar en base a este evento."
+
+ganoEligiendo: miEleccion contra: otroJugador eligiendo: eleccionContraria 
+    "Implementar si hace falta actuar en base a este evento."
+
+eleccion
+    self subclassResponsibility.
+
+empatoEligiendo: miEleccion contra: otroJugador eligiendo: eleccionContraria 
+    "Implementar si hace falta actuar en base a este evento."
+
+Jugador class
+
+aleatorioConGenerador: unGenerador
+    ^ JugadorAleatorio new
+        generador: unGenerador;
+        yourself.
+
+conHistoriaHasta: cantidadDeResultadosAGuardar
+    ^ self shouldBeImplemented.
+
+siempre: unaEleccion 
+    ^ JugadorSiempre new
+        juegaCon: unaEleccion;
+        yourself.
+
+humano
+    ^ JugadorHumano new.
+
+aleatorio
+    ^ JugadorAleatorio new
+        generador: (Random new);
+        yourself.
+
+adaptativoIniciandoCon: unaEleccion
+    ^ JugadorAdaptativo new
+        iniciaCon: unaEleccion;
+        yourself.

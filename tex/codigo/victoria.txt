@@ -1,0 +1,28 @@
+Resultado subclass: #Victoria
+    instanceVariableNames: 'ganador eleccionGanadora perdedor eleccionPerdedora'
+
+notificarAJugadores
+    ganador ganoEligiendo: eleccionGanadora contra: perdedor eligiendo: eleccionPerdedora.
+    perdedor perdioEligiendo: eleccionPerdedora contra: ganador eligiendo: eleccionGanadora.
+
+ganador
+    ^ ganador
+
+ganador: unJugador eleccionGanadora: unaEleccion perdedor: otroJugador eligiendo: otraEleccion 
+    ganador := unJugador.
+    eleccionGanadora := unaEleccion.
+    perdedor := otroJugador.
+    eleccionPerdedora := otraEleccion.
+
+esEmpate
+    ^ false.
+
+Victoria class
+
+de: unJugador eligiendo: unaEleccion contra: otroJugador eligiendo: otraEleccion 
+    ^ self new 
+        ganador: unJugador
+        eleccionGanadora: unaEleccion
+        perdedor: otroJugador
+        eligiendo: otraEleccion;
+        yourself.

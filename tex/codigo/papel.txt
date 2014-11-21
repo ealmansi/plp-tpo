@@ -1,0 +1,27 @@
+Eleccion subclass: #Papel
+    classVariableNames: 'UniqueInstance'
+
+ganadorContraLagarto
+    ^ Eleccion lagarto.
+
+ganadorContraTijera
+    ^ Eleccion tijera.
+
+ganadorContraPapel
+    ^ nil.
+
+ganadorContraPiedra
+    ^ self.
+
+ganadorContraSpock
+    ^ self.
+
+ganadorContra: otraEleccion
+    ^ otraEleccion ganadorContraPapel.
+
+Papel class
+
+singleton
+    "devuelve la unica instancia de la clase"
+    UniqueInstance ifNil: [ UniqueInstance := self new ].
+    ^UniqueInstance
